@@ -20,9 +20,9 @@ final class Portal {
         $this->loadHelpers();
         
         // cargar las clases para la gestion MVC
-        require_once(SYS_DIR . 'model.php');
-        require_once(SYS_DIR . 'view.php');
         require_once(SYS_DIR . 'controller.php');
+        require_once(SYS_DIR . 'view.php');
+        require_once(SYS_DIR . 'model.php');
     }
     
     public function run() {
