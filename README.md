@@ -1,2 +1,5 @@
 # portal
-framework php ligero para crear aplicaciones de forma facil y rapidamente
+Framework PHP Ligero basado en el proyecto de [Gilbitron/PIP](https://github.com/gilbitron/PIP) 
+
+# Jornada de Trabajo
+
