@@ -44,10 +44,11 @@ final class Portal {
         $usingError = false;
         
         // verificar que exista la clase
-        $cls = $this->controller;
+        $controller = UString::toCapitalize($this->controller);
+        $cls = $controller;
         if(!class_exists($cls)) {
             // es probable que el controlador tenga el sufijo <Controller>
-            $cls = $this->controller . 'Controller';
+            $cls = $controller . 'Controller';
             if(!class_exists($cls)) {
                 // tampoco existe con el sufijo, usar el controlador de error
                 $cls = CONTROLLER_ERROR;
@@ -56,7 +57,7 @@ final class Portal {
                 $usingError = true;
             }
         }
-        
+                
         // verificar la existencia de la función
         $fnc = $this->action;
         if(!method_exists($cls, $fnc)) {
@@ -115,6 +116,8 @@ final class Portal {
         $idx = $position + 1; // identificar la acción
         if(isset($segments[$idx]) && $segments[$idx] != '') {
             $this->action = $segments[$idx];
+        } else {
+            $this->action = 'index';
         }
         
         if($position == 0) {

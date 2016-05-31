@@ -1,6 +1,6 @@
 <?php
 
-define('BASE_URL', '');
+define('BASE_URL', 'portal/');
 define('CONTROLLER_DEFAULT', 'home');
 define('CONTROLLER_ERROR', 'error');
 

@@ -24,6 +24,7 @@ class Controller {
     }
     
     public static function navigate($location) {
-        header('Location: ' . BASE_URL . $location);
+        $url = Request::resolveUrl($location);
+        header('Location: ' . $url);
     }
 }

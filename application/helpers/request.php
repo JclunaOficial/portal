@@ -48,9 +48,32 @@ final class Request {
             return $default;
         }
     }
-
+    
+    public static function getHostUrl() {
+        $server = self::getServer('SERVER_NAME', 'localhost');
+        $port = self::getServer('SERVER_PORT', '80');
+        $https = UString::toUpper(self::getServer('HTTPS', 'off'));
+        if($https == 'ON') {
+            $host_url = 'https://'.$server;
+            if($port != '443') {
+                $host_url .= ':' . $port;
+            }
+        } else {
+            if($port == '443') {
+                $host_url = 'https://'.$server;
+            } else {
+                $host_url = 'http://'.$server;
+                if($port != '80') {
+                    $host_url .= ':' . $port;
+                }
+            }
+        }
+        
+        return $host_url . '/';
+    }
+    
     public static function resolveUrl($url) {
-        return BASE_URL . $url;
+        return self::getHostUrl() . BASE_URL . $url;
     }
     
 }
