@@ -30,11 +30,11 @@ final class UString {
         return ucfirst(self::toLower($value, $length));
     }
     
-    public static function startsWidth($value, $search) {
+    public static function startsWith($value, $search) {
         return $search === "" || strrpos($value, $search, -strlen($value)) !== false;
     }
     
-    public static function endsWidth($value, $search) {
+    public static function endsWith($value, $search) {
         return $search === "" || (($temp = strlen($value) - strlen($search)) >= 0 && strpos($value, $search, $temp) !== false);
     }
 

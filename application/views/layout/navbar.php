@@ -23,6 +23,8 @@
                     </ul>
                 </li>
             </ul>
+            
+            <?=Bootstrap::getNavbar(MVC_VIEWS . 'layout/navbar.xml');?>
         </div>
     </div>
 </div>

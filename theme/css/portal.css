@@ -25,7 +25,7 @@ html, body {
     margin-bottom: 10px !important;
 }
 
-.page-header {
+h1, h2, h3, .page-header {
     margin-top: 10px !important;
 }
 

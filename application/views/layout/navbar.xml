@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<navbar>
+    <menu title="Home" url="~/" icon="fa fa-home"/>
+    <menu title="Catalogo" icon="fa fa-ticket">
+        <menu title="Categorias"/>
+        <menu title="Productos"/>
+        <menu url="#divider"/>
+        <menu title="Proveedores"/>
+        <menu title="Fabricantes"/>    
+    </menu>
+    <menu title="Preferencias">
+        <menu title="Color y Diseño"/>
+        <menu title="Notificaciones"/>
+    </menu>
+</navbar>

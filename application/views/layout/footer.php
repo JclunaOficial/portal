@@ -11,8 +11,8 @@
         </div>
     </div>
     
-    <script type="text/javascript" src="<?=Request::resolveUrl("theme/js/jquery.min.js");?>"></script>
-    <script type="text/javascript" src="<?=Request::resolveUrl("theme/bs/js/bootstrap.min.js");?>"></script>
+    <script type="text/javascript" src="<?=Request::resolveUrl('theme/js/jquery.min.js');?>"></script>
+    <script type="text/javascript" src="<?=Request::resolveUrl('theme/bs/js/bootstrap.min.js');?>"></script>
 
     </body>
 </html>
