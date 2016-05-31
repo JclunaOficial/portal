@@ -49,4 +49,8 @@ final class Request {
         }
     }
 
+    public static function resolveUrl($url) {
+        return BASE_URL . $url;
+    }
+    
 }

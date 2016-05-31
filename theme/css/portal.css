@@ -1,0 +1,48 @@
+html, body {
+    height: 100%;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+#page-wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -55px;
+    padding: 0 0 55px;
+}
+
+#page-footer {
+    height: 55px;
+}
+
+#page-footer > .container {
+    padding: 6px 20px 0 20px;
+    font-size: 85% !important;
+}
+
+.navbar {
+    margin-bottom: 10px !important;
+}
+
+.page-header {
+    margin-top: 10px !important;
+}
+
+.breadcrumb {
+    margin-bottom: 8px !important;
+}
+
+.panel {
+    margin-bottom: 8px !important;
+}
+
+@media print {
+    a[href]:after {
+        content: none;
+    }
+    
+    .container {
+        width: 1200px;
+    }
+}

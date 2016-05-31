@@ -6,7 +6,7 @@ require_once(APP_DIR . 'settings.php');
 final class Portal {
     
     // información básico del framework; NO REMOVER!!! 
-    const Product = 'Portal Framework';
+    const Product = 'Portal';
     const Version = '2016.05.30.1159';
     const Author  = 'Juan C. Luna H.';
     
