@@ -21,20 +21,22 @@ final class UsuarioModel extends Model {
         switch ($id) {
             case 1:
                 $usr = new Usuario();
-                $usr->id = $id;
-                $usr->tipo = Usuario::TIPO_USUARIO;
-                $usr->cuenta = 'usuario';
-                $usr->correo = 'usuario@portal.net';
-                $usr->estatus = Usuario::ESTATUS_ACTIVO;
+                $usr->setId($id);
+                $usr->setTipo(Usuario::TIPO_USUARIO);
+                $usr->setCuenta('usuario');
+                $usr->setNombre('Juan Perez');
+                $usr->setCorreo('usuario@portal.net');
+                $usr->setEstatus(Usuario::ESTATUS_ACTIVO);
                 return $usr;
                 
             case 2:
                 $usr = new Usuario();
-                $usr->id = $id;
-                $usr->tipo = Usuario::TIPO_ADMIN;
-                $usr->cuenta = 'admin';
-                $usr->correo = 'admin@portal.net';
-                $usr->estatus = Usuario::ESTATUS_ACTIVO;
+                $usr->setId($id);
+                $usr->setTipo(Usuario::TIPO_ADMIN);
+                $usr->setCuenta('admin');
+                $usr->setNombre('Administrador');
+                $usr->setCorreo('admin@portal.net');
+                $usr->setEstatus(Usuario::ESTATUS_ACTIVO);
                 return $usr;
                 
             default:

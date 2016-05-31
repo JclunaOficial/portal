@@ -16,6 +16,7 @@ final class Usuario {
     private $id;
     private $tipo;
     private $cuenta;
+    private $nombre;
     private $correo;
     private $estatus;
     
@@ -54,6 +55,14 @@ final class Usuario {
     
     public function setCuenta($cuenta) {
         $this->cuenta = UString::toEmpty($cuenta, 16);
+    }
+    
+    public function getNombre() {
+        return $this->nombre;
+    }
+    
+    public function setNombre($nombre) {
+        $this->nombre = UString::toEmpty($nombre, 150);
     }
     
     public function getCorreo() {

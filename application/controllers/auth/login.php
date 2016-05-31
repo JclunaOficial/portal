@@ -12,16 +12,63 @@ final class LoginController extends Controller {
         
         $mensaje = '';
         if(Request::isPostback()) {
-            // obtener información del usuario
+            // validar la cuenta de usuario
+            $usuario =$this->validarCuenta($mensaje);
+            if($usuario != null) {
+                // cargar la sesión del usuario
+                Session::set(LOGIN_READY, true);
+                Session::set(LOGIN_USER, $usuario->getId());
+                Session::set(LOGIN_NAME, $usuario->getCuenta());
+                Session::set(LOGIN_TITLE, $usuario->getNombre());
+                
+                // navegar a la pagina principal
+                self::navigate('');
+                return; // terminar proceso
+            }
         }
         
-        // presentar la vista para el login
+        // configurar la vista para el login
         $view = $this->loadView('auth|login', false);
         $view->addVar('pageTitle', 'Control de Acceso');
         $view->addVar('mensaje', $mensaje);
         
+        // agregar componentes adicionales
         $this->agregarComponentes($view);
+        
+        // presentar la vista
         $view->render();
+    }
+    
+    private function validarCuenta(&$mensaje) {
+        // validar los campos del formulario
+        $usr = Request::getForm('txt_usr', '');
+        $pwd = Request::getForm('txt_pwd', '');
+        if(strlen($usr) == 0 || strlen($pwd) == 0) {
+            $mensaje = 'La cuenta de usuario y la contraseña son requeridos.';
+            return null; // terminar proceso
+        }
+
+        // cargar las clases y modelos necesarios        
+        $this->loadClass('usuario'); // clase del tipo Usuario
+        $this->loadModel('usuario'); // clase del tipo UsuarioModel
+        $model = new UsuarioModel(); 
+
+        // recuperar el ID asignado al usuario
+        $id = $model->getLoginId($usr, $pwd);
+        if($id == 0) {
+            $mensaje = 'La cuenta de usuario o la contraseña es invalida.';
+            return null; // terminar proceso
+        }
+        
+        // recuperar el registro del usuario
+        $reg = $model->getRegistro($id);
+        if($reg->getTipo() == Usuario::SIN_ASIGNAR || $reg->getEstatus() != Usuario::ESTATUS_ACTIVO) {
+            $mensaje = 'El tipo de usuario no es valido o la cuenta no esta activa.';
+            return null; // terminar proceso
+        }
+        
+        // el registro esta listo
+        return $reg;
     }
     
     private function agregarComponentes($view) {
