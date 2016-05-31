@@ -44,8 +44,18 @@ class View {
         // iniciar el buffer de salida y ejecutar la página
         ob_start(); 
         
+        // LAYOUT - header (cabecera de página)
+        include_once(MVC_VIEWS . 'layout' . DS . 'header.php');
+        if($this->navbar == true) {
+            // LAYOUT - navbar (barra de navegación)
+            include_once(MVC_VIEWS . 'layout' . DS . 'navbar.php');
+        }
+        
         // cargar la vista de la página
         require_once($this->viewName);
+        
+        // LAYOUT - footer (pie de página)
+        include_once(MVC_VIEWS . 'layout' . DS . 'footer.php');
         
         // cerrar el buffer de salida y enviar la página al cliente
         echo ob_get_clean(); 
