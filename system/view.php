@@ -29,7 +29,7 @@ class View {
     }
     
     public function addInclude($file) {
-        $this->includes[] = $file;
+        $this->includes[] = UString::replacePipe($file);
     }
     
     public function render() {

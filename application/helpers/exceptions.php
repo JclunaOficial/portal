@@ -1,5 +1,8 @@
 <?php
 
-final class WebsiteException extends Exception {
+/**
+* Gestor de excepción especifica del sistema
+*/
+final class PortalException extends Exception {
     
 }

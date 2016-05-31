@@ -11,6 +11,16 @@
         <link type="text/css" rel="stylesheet" href="<?=Request::resolveUrl('theme/bs/css/bootstrap-default.min.css');?>"/>
         <link type="text/css" rel="stylesheet" href="<?=Request::resolveUrl('theme/fa/css/font-awesome.min.css');?>"/>
         <link type="text/css" rel="stylesheet" href="<?=Request::resolveUrl('theme/css/portal.css');?>"/>
+        
+        <?php
+        if(isset($styles) && count($styles)) {
+            // agregar las hojas de estilo definidas para la vista
+            echo "\r\n"; // insertar una linea antes de la declaración de stylesheet
+            foreach($styles as $style) {
+                echo "<link type='text/css' rel='stylesheet' href='$style'/>\r\n";
+            }
+        }
+        ?>
 
         <!--[if lt IE 9]>
         <script type="text/javascript" src="<?=Request::resolveUrl('theme/js/html5shiv.min.js');?>"></script>

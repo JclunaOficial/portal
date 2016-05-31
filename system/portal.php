@@ -3,6 +3,18 @@
 // cargar las configuraciones
 require_once(APP_DIR . 'settings.php');
 
+// define la ruta general de los modelos, las vistas y los controladores
+define('MVC_MODELS', APP_DIR . 'models' . DS);
+define('MVC_VIEWS', APP_DIR . 'views' . DS);
+define('MVC_CONTROLLERS', APP_DIR . 'controllers' . DS);
+
+// define las variables de sesión para el login
+define('CONTROLLER_LOGIN', 'auth/login');   // controlador predeterminado para el login 
+define('LOGIN_READY', '__loginReady');      // determina si la sesión de usuario esta cargada
+define('LOGIN_USER', '__loginUser');        // contiene el ID del usuario en sesión
+define('LOGIN_NAME', '__loginName');        // contiene la cuenta del usuario en sesión
+define('LOGIN_TITLE', '__loginTitle');      // contiene el nombre completo o titulo del usuario en sesión
+
 final class Portal {
     
     // información básico del framework; NO REMOVER!!! 

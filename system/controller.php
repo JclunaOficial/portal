@@ -1,26 +1,20 @@
 <?php
 
-// define la ruta general de los modelos, las vistas y los controladores
-define('MVC_MODELS', APP_DIR . 'models' . DS);
-define('MVC_VIEWS', APP_DIR . 'views' . DS);
-define('MVC_CONTROLLERS', APP_DIR . 'controllers' . DS);
-
 class Controller {
     
-    public function loadModel($modelName) {
-        require_once(MVC_MODELS . strtolower($modelName) . '.php');
+    public function loadModel($model) {
+        //require_once(MVC_MODELS . strtolower($this->replacePipe($modelName)) . '.php');
+        require_once(UString::replacePipe(MVC_MODELS . strtolower($model) . '.php'));
     }
     
-    public function loadView($viewName, $navbar = true) {
-        return new View($viewName, $navbar);
+    public function loadView($view, $navbar = true) {
+        //return new View($this->replacePipe($viewName), $navbar);
+        return new View(UString::replacePipe($view), $navbar);
     }
     
-    public function loadPlugin($pluginName) {
-        require_once(APP_DIR . 'plugins' . DS . strtolower($pluginName) . '.php');
-    }
-    
-    public function loadClass($className) {
-        require_once(APP_DIR . 'classes' . DS . strtolower($className) . '.php');
+    public function loadClass($class) {
+        //require_once(APP_DIR . 'classes' . DS . strtolower($this->replacePipe($className)) . '.php');
+        require_once(UString::replacePipe(APP_DIR . 'classes|' . strtolower($class) . '.php'));
     }
     
     public static function navigate($location) {
