@@ -50,7 +50,7 @@ final class Usuario {
     }
     
     public function getCuenta() {
-        return $this-cuenta;
+        return $this->cuenta;
     }
     
     public function setCuenta($cuenta) {
