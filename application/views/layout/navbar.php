@@ -14,15 +14,17 @@
         </div>
         
         <div id="main" class="collapse navbar-collapse">
+            <?php if(Session::get(LOGIN_READY, false)) { ?>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <b class="fa fa-user"></b>&nbsp; {usuario} <i class="caret"></i></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="<?=Session::get(LOGIN_TITLE);?>">
+                        <b class="fa fa-user"></b>&nbsp; <?=Session::get(LOGIN_NAME);?> <i class="caret"></i></a>
                     <ul class="dropdown-menu">
                         <li><a href="<?=Request::resolveUrl('auth/logout');?>"><b class="fa fa-power-off"></b> Terminar Sesión</a></li>
                     </ul>
                 </li>
             </ul>
+            <?php } ?>
             
             <?=Bootstrap::getNavbar(MVC_VIEWS . 'layout/navbar.xml');?>
         </div>

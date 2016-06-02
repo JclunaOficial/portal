@@ -24,8 +24,8 @@ final class Portal {
     
     // declaracion de variables de trabajo
     private $controller = CONTROLLER_DEFAULT;
-    private $action      = 'index';
-    private $url         = '';
+    private $action     = 'index';
+    private $url        = '';
     
     public function __construct() {
         // cargar los helpers del sistema
@@ -37,7 +37,7 @@ final class Portal {
         require_once(SYS_DIR . 'model.php');
     }
     
-    public function run() {
+    public function run() {        
         // recuperar los segmentos de la petición web
         $segments = $this->getSegments();
         
@@ -46,9 +46,17 @@ final class Portal {
         
         // validar el controlador (clase) y la acción (función)
         $cf = $this->validateController($paramsIndex);
-        
+        $obj = new $cf[0]; // crear el objeto del controlador
+
+        // si no hay sesión de usuario y el controlador lo require
+        $loginReady = Session::get(LOGIN_READY, false);
+        if($loginReady == false && $obj->getRequireLogin()) {
+            // solicitar el inicio de sesión
+            Controller::navigate(CONTROLLER_LOGIN);
+            exit(); // terminar petición actual
+        }
+
         // ejecutar el controlador/accion
-        $obj = new $cf[0];
         die(call_user_func_array(array($obj, $cf[1]), array_slice($segments, $cf[2])));
     }
     
@@ -119,7 +127,7 @@ final class Portal {
         return explode('/', $this->url);
     }
     
-    private function findControllerAction($segments, $position) {
+    private function findControllerAction($segments, $position, &$path) {
         $idx = $position; // identificar el controlador
         if(isset($segments[$idx]) && $segments[$idx] != '') {
             $this->controller = $segments[$idx];
@@ -137,13 +145,11 @@ final class Portal {
             $path = MVC_CONTROLLERS . $this->controller . '.php';
         } else {
             // controlador en subfolder
-            $path = MVC_CONTROLLERS . $segments[0] . DS . $this->controller . '.php';            
+            $path = MVC_CONTROLLERS . $segments[0] . DS . $this->controller . '.php';
         }
         
         if(file_exists($path)) {
-            // cargar el controlador localizado
-            require_once($path);
-            return true;
+            return true; // controlador localizado
         }
         
         // el controlador no existe
@@ -151,20 +157,24 @@ final class Portal {
     }
     
     private function getControllerAction($segments) {
-        $offset = 2; // recuperar los segmentos de la petición web
+        $offset = 2;     // recuperar los segmentos de la petición web
+        $path = '';      // ruta del controlador localizado
         
         // localizar el controlador en la primer forma: /controller/action/
-        if($this->findControllerAction($segments, 0) == false) {
+        if($this->findControllerAction($segments, 0, $path) == false) {
             $offset = 3; // se asume existencia de sección
             
             // localizar el controlador en la segunda forma: /<section>/controller/action/
-            if($this->findControllerAction($segments, 1) == false) {
+            if($this->findControllerAction($segments, 1, $path) == false) {
                 $offset = 2; // no existe el controlador
                 $this->controller = CONTROLLER_ERROR;
                 $this->action = 'index';
-                require_once(MVC_CONTROLLERS . $this->controller . '.php');
+                $path = MVC_CONTROLLERS . $this->controller . '.php';
             }
         }
+        
+        // cargar el controlador localizado
+        require_once($path);
         return $offset;
     }
 }

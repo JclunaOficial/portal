@@ -17,8 +17,5 @@ define('APP_DIR', ROOT_DIR . 'application' . DS);   // ruta de aplicación
 require_once(SYS_DIR . 'portal.php');
 $portal = new Portal(); // crear objeto de trabajo
 
-$host = Request::getHostUrl();
-//var_dump(Request::getServerValues());
-
 // iniciar la ejecución del sistema
 $portal->run();

@@ -26,7 +26,7 @@ img { max-width: 100%; }
 .form-top-left {
     float: left;
     width: 75%;
-    padding-top: 0;
+    padding-top: 6px;
 }
 
 .form-top-right {
@@ -54,7 +54,8 @@ img { max-width: 100%; }
 @media (max-width: 767px) {}
 @media (max-width: 415px) {
     h1, h2 { font-size: 32px; }
-    h2{font-size:20px; margin-top: 18px;}
+    h2 { font-size:20px; margin-top: 18px; }
+    .form-top-left { padding-top: 8px; }
     .inner-bg { padding: 1px 0 1px 0; }
     .alert{padding: 5px 8px;}
 }

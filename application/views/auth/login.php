@@ -8,7 +8,7 @@
                 </div>
             </div>
             <div id="alert-caja" class="alert alert-danger" style="display: none;">
-                <strong>ATENCIÓN [<small><?= UString::formatNowTime(true); ?></small>]</strong>:
+                <strong>ATENCIÓN [ <small><?= UString::formatNowTime(true); ?></small> ]</strong>:
                 <span id="alert-mensaje"><?= (isset($mensaje) ? $mensaje : ''); ?></span>
             </div>
             <div class="row">
@@ -41,4 +41,3 @@
         </div>
     </div>
 </div>
-

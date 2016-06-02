@@ -1,6 +1,14 @@
 <?php
 
+/**
+* Controlador para iniciar la sesión de usuario
+*/
 final class LoginController extends Controller {
+    
+    function __construct() {
+        // no require de login
+        $this->setRequireLogin(false);
+    }
     
     public function index() {
         // verificar si hay sesión de usuario iniciada
@@ -22,7 +30,7 @@ final class LoginController extends Controller {
                 Session::set(LOGIN_TITLE, $usuario->getNombre());
                 
                 // navegar a la pagina principal
-                self::navigate('');
+                self::navigate(CONTROLLER_DEFAULT);
                 return; // terminar proceso
             }
         }

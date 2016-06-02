@@ -110,8 +110,20 @@ final class UString {
     /**
     * Recupera un string con la fecha actual con formato aaaa-mm-dd hh:mm<:ss> 
     */
-    public static function formatNowTime($seconds = false) {
+    public static function formatNowDateTime($seconds = false) {
         return self::formatDateTime(new DateTime(), $seconds);
+    }
+    
+    /**
+    * Recupera un string con la hora actual con formato hh:mm<:ss>
+    */
+    public static function formatNowTime($seconds = false) {
+        $date = new DateTime();
+        if ($seconds == true) {
+            return $date->format('H:i:s');
+        } else {
+            return $date->format('H:i');
+        }
     }
     
     /**
