@@ -1,16 +1,33 @@
 <?php
 
+/** Valores para determinar el tipo de usuario */
+abstract class UsuarioTipo extends Enum {
+    /** El tipo de usuario no esta asígnado */
+    const SinAsignar = 0;
+    
+    /** El usuario es un simple mortal */
+    const Usuario = 1;
+    
+    /** El usuario es un administrador */
+    const Administrador = 128;
+}
+
+/** Valores para determina el estatus del usuario */
+abstract class UsuarioEstatus extends Enum {
+    /** El estatus del usuario no esta asignado */
+    const SinAsignar = 0;
+    
+    /** El usuario esta activo */
+    const Activo = 1;
+    
+    /** El usuario no esta activo */
+    const Inactivo = 2;
+}
+
 /**
 * Información básica de un usuario
 */
 final class Usuario {
-    
-    // definición de constantes para la clase
-    const SIN_ASIGNAR = 0;
-    const TIPO_USUARIO = 1;
-    const TIPO_ADMIN = 2;
-    const ESTATUS_ACTIVO = 1;
-    const ESTATUS_INACTIVO = 2;
     
     // declaración de atributos
     private $id;
@@ -23,10 +40,10 @@ final class Usuario {
     public function __construct() {
         // inicializar los atributos
         $this->id = 0;
-        $this->tipo = self::SIN_ASIGNAR;
+        $this->tipo = UsuarioTipo::SinAsignar;
         $this->cuenta = '';
         $this->correo = '';
-        $this->estatus = self::SIN_ASIGNAR;
+        $this->estatus = UsuarioEstatus::SinAsignar;
     }
     
     public function getId() {
@@ -42,9 +59,8 @@ final class Usuario {
     }
     
     public function setTipo($tipo) {
-        if($tipo < self::SIN_ASIGNAR || $tipo > self::TIPO_ADMIN) {
-            $this->tipo = self::SIN_ASIGNAR;
-        } else {
+        $this->tipo = UsuarioTipo::SinAsignar;
+        if(UsuarioTipo::isValidValue($tipo)) {
             $this->tipo = $tipo;
         }
     }
@@ -78,9 +94,8 @@ final class Usuario {
     }
     
     public function setEstatus($estatus) {
-        if($estatus < self::SIN_ASIGNAR || $estatus > self::ESTATUS_INACTIVO) {
-            $this->estatus = self::SIN_ASIGNAR;
-        } else {
+        $this->estatus = UsuarioEstatus::SinAsignar;
+        if(UsuarioEstatus::isValidValue($estatus)) {
             $this->estatus = $estatus;
         }
     }

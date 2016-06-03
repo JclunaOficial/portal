@@ -22,21 +22,21 @@ final class UsuarioModel extends Model {
             case 1:
                 $usr = new Usuario();
                 $usr->setId($id);
-                $usr->setTipo(Usuario::TIPO_USUARIO);
+                $usr->setTipo(UsuarioTipo::Usuario);
                 $usr->setCuenta('usuario');
                 $usr->setNombre('Juan Perez');
                 $usr->setCorreo('usuario@portal.net');
-                $usr->setEstatus(Usuario::ESTATUS_ACTIVO);
+                $usr->setEstatus(UsuarioEstatus::Activo);
                 return $usr;
                 
             case 2:
                 $usr = new Usuario();
                 $usr->setId($id);
-                $usr->setTipo(Usuario::TIPO_ADMIN);
+                $usr->setTipo(UsuarioTipo::Administrador);
                 $usr->setCuenta('admin');
                 $usr->setNombre('Administrador');
                 $usr->setCorreo('admin@portal.net');
-                $usr->setEstatus(Usuario::ESTATUS_ACTIVO);
+                $usr->setEstatus(UsuarioEstatus::Activo);
                 return $usr;
                 
             default:

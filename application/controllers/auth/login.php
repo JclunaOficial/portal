@@ -70,7 +70,7 @@ final class LoginController extends Controller {
         
         // recuperar el registro del usuario
         $reg = $model->getRegistro($id);
-        if($reg->getTipo() == Usuario::SIN_ASIGNAR || $reg->getEstatus() != Usuario::ESTATUS_ACTIVO) {
+        if($reg->getTipo() == UsuarioTipo::SinAsignar || $reg->getEstatus() != UsuarioEstatus::Activo) {
             $mensaje = 'El tipo de usuario no es valido o la cuenta no esta activa.';
             return null; // terminar proceso
         }
