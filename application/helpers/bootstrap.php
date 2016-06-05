@@ -1,4 +1,5 @@
 <?php
+if(!defined('ROOT_DIR')) { die('Acceso Denegado'); }
 
 /**
 * Funciones de utilidad especificas para el framework [Twitter Bootstrap]

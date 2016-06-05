@@ -1,3 +1,4 @@
+<?php if(!defined('ROOT_DIR')) { die('Acceso Denegado'); } ?>
 
 <div class="top-content">
     <div class="inner-bg">

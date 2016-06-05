@@ -1,4 +1,5 @@
 <?php
+if(!defined('ROOT_DIR')) { die('Acceso Denegado'); }
 
 // incluir la enumeraciones
 require_once(UString::replacePipe('enums|usuario_tipo.php'));

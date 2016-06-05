@@ -1,3 +1,4 @@
+<?php if(!defined('ROOT_DIR')) { die('Acceso Denegado'); } ?>
 
 <script type="text/javascript">
     $(document).ready(function() {

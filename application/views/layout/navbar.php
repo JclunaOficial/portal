@@ -1,3 +1,4 @@
+<?php if(!defined('ROOT_DIR')) { die('Acceso Denegado'); } ?>
 
 <div class="navbar navbar-default" role="navbar">
     <div class="container">

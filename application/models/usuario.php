@@ -1,4 +1,5 @@
 <?php
+if(!defined('ROOT_DIR')) { die('Acceso Denegado'); }
 
 final class UsuarioModel extends Model {
     

@@ -1,4 +1,5 @@
 <?php
+if(!defined('ROOT_DIR')) { die('Acceso Denegado'); }
 
 /**
 * Controlador para termina la sesión de usuario

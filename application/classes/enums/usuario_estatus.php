@@ -1,4 +1,5 @@
 <?php
+if(!defined('ROOT_DIR')) { die('Acceso Denegado'); }
 
 /** Valores para determina el estatus del usuario */
 abstract class UsuarioEstatus extends Enum {

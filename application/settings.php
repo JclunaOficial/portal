@@ -1,4 +1,5 @@
 <?php
+if(!defined('ROOT_DIR')) { die('Acceso Denegado'); }
 
 define('BASE_URL', 'portal/');
 define('CONTROLLER_DEFAULT', 'home');

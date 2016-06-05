@@ -1,4 +1,5 @@
 <?php
+if(!defined('ROOT_DIR')) { die('Acceso Denegado'); }
 
 /** Valores para determinar el tipo de usuario */
 abstract class UsuarioTipo extends Enum {

@@ -1,4 +1,5 @@
 <?php
+if(!defined('ROOT_DIR')) { die('Acceso Denegado'); }
 
 /** Clase de ayuda para la declaración y gestion de enumeraciones */
 abstract class Enum {

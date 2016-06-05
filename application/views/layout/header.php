@@ -1,3 +1,5 @@
+<?php if(!defined('ROOT_DIR')) { die('Acceso Denegado'); } ?>
+
 <!DOCTYPE html>
 <html>
     <head>
