@@ -30,10 +30,9 @@ Si quieres contribuir a mejorar este proyecto o tienes dudas, por favor unete al
     * jQuery v1.12.3
     * Twitter Bootstrap v3.3.6
     * Font Awesome v4.3.0
-
- * Formulario para Login
- * Generación dinámica de la barra de navegación basado en un archivo XML (navbar.xml)
- * Integración de Helpers
+  * Formulario para Login
+  * Generación dinámica de la barra de navegación basado en un archivo XML (navbar.xml)
+  * Integración de Helpers
     * UString: funciones para la gestión de cadena de caracteres.
     * PortalException: clase para disparar excepciones personalizadas propias del framework.
     * Session: funciones para la gestión de las variables de sesión.
