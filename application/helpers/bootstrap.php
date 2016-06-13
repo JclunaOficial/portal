@@ -1,15 +1,22 @@
 <?php
 
+// prevenir el acceso directo
+if (!defined('ROOT_DIR')) {
+    die('Usted no puede cargar esta pagina directamente.');
+}
+
 /**
-* Funciones de utilidad especificas para el framework [Twitter Bootstrap]
-*/
+ * Funciones de utilidad especificas para el framework [Twitter Bootstrap]
+ */
 final class Bootstrap {
-    
+
     /**
-    * Recupera un string con la estructura de una barra de navegación de bootstrap
-    */
-    public static function getNavbar($file) {
-        $navbar = simplexml_load_file($file);
+     * Recupera la barra de navegación de bootstrap
+     * @param string $navbarXml archivo xml con la estructura de navegación
+     * @return string estructura HTML para la barra de navegación
+     */
+    public static function getNavbar($navbarXml) {
+        $navbar = simplexml_load_file($navbarXml);
         $sb = '<ul class="nav navbar-nav">';
 
         foreach ($navbar->children() as $child) {
@@ -57,7 +64,7 @@ final class Bootstrap {
 
     private static function getUrl($value) {
         if (isset($value) && strlen($value) > 0) {
-            if(UString::startsWith($value, '~/')) {
+            if (UString::startsWith($value, '~/')) {
                 return str_replace('~/', Request::resolveUrl(''), $value);
             }
             return $value;

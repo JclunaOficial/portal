@@ -1,9 +1,34 @@
-<IfModule mod_rewrite.c>
-RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d 
-RewriteRule . index.php [L]
-</IfModule>
+# sobrescribir el charset
+AddDefaultCharset UTF-8
 
-# Prevent file browsing
+# prevenir el listado de directorios
 Options -Indexes
+
+# esto es requerido para la re-escritura de urls en algunos servidores
+Options +FollowSymLinks
+
+# asignar el manejador predeterminado
+DirectoryIndex index.php
+
+# bloquear el acceso directo a los archivos XML
+<Files ~ "\.xml$">
+    <IfModule !mod_authz_core.c>
+        Deny from all
+    </IfModule>
+    <IfModule mod_access_compat.c>
+        Deny from all
+    </IfModule>
+    <IfModule mod_authz_core.c>
+        <IfModule !mod_access_compat.c>
+            Require all denied
+        </IfModule>
+    </IfModule>	
+</Files>
+
+# manejar la re-escritura de urls
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d 
+    RewriteRule . index.php [L]
+</IfModule>

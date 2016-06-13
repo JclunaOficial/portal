@@ -1,10 +1,16 @@
+<?php
+// prevenir el acceso directo
+if (!defined('ROOT_DIR')) {
+    die('Usted no puede cargar esta pagina directamente.');
+}
+?>
 
 <div class="top-content">
     <div class="inner-bg">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2 text">
-                    <h1><?=PORTAL_TITLE;?></h1>
+                    <h1><?= PORTAL_TITLE; ?></h1>
                 </div>
             </div>
             <div id="alert-caja" class="alert alert-danger" style="display: none;">

@@ -22,15 +22,11 @@ html, body {
 }
 
 .navbar {
-    margin-bottom: 10px !important;
+    margin-bottom: 8px !important;
 }
 
 h1, h2, h3, .page-header {
-    margin-top: 10px !important;
-}
-
-.breadcrumb {
-    margin-bottom: 8px !important;
+    margin-top: 8px !important;
 }
 
 .panel {
@@ -43,6 +39,12 @@ h1, h2, h3, .page-header {
     }
     
     .container {
-        width: 1200px;
+        width: auto;
     }
 }
+
+@-webkit-viewport   { width: device-width; }
+@-moz-viewport      { width: device-width; }
+@-ms-viewport       { width: device-width; }
+@-o-viewport        { width: device-width; }
+@viewport           { width: device-width; }

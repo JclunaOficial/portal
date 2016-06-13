@@ -1,42 +1,30 @@
 <?php
 
-/** Valores para determinar el tipo de usuario */
-abstract class UsuarioTipo extends Enum {
-    /** El tipo de usuario no esta asígnado */
-    const SinAsignar = 0;
-    
-    /** El usuario es un simple mortal */
-    const Usuario = 1;
-    
-    /** El usuario es un administrador */
-    const Administrador = 128;
+// prevenir el acceso directo
+if (!defined('ROOT_DIR')) {
+    die('Usted no puede cargar esta pagina directamente.');
 }
 
-/** Valores para determina el estatus del usuario */
-abstract class UsuarioEstatus extends Enum {
-    /** El estatus del usuario no esta asignado */
-    const SinAsignar = 0;
-    
-    /** El usuario esta activo */
-    const Activo = 1;
-    
-    /** El usuario no esta activo */
-    const Inactivo = 2;
-}
+// incluir la enumeraciones
+require_once(UString::replacePipe(APP_CLASS . 'enums|usuario_tipo.php'));
+require_once(UString::replacePipe(APP_CLASS . 'enums|usuario_estatus.php'));
 
 /**
-* Información básica de un usuario
-*/
+ * Información de un usuario
+ */
 final class Usuario {
-    
+
     // declaración de atributos
     private $id;
     private $tipo;
     private $cuenta;
-    private $nombre;
     private $correo;
     private $estatus;
-    
+    private $creado;
+
+    /**
+     * Crear una instancia del tipo Usuario
+     */
     public function __construct() {
         // inicializar los atributos
         $this->id = 0;
@@ -44,59 +32,130 @@ final class Usuario {
         $this->cuenta = '';
         $this->correo = '';
         $this->estatus = UsuarioEstatus::SinAsignar;
+        $this->creado = new DateTime();
     }
-    
+
+    /**
+     * Integrar el registro al objeto Usuario
+     * @param array $registro información a cargar al objeto
+     * @return \Usuario
+     * @throws PortalException
+     */
+    public static function mapear($registro) {
+        if ($registro == null || count($registro) == 0) {
+            throw new PortalException('No hay información para cargar al objeto.');
+        }
+
+        // cargar la información
+        $usuario = new Usuario();
+        $usuario->setId(Model::getDataInteger($registro, 'id'));
+        $usuario->setTipo(Model::getDataInteger($registro, 'tipo'));
+        $usuario->setCuenta(Model::getDataString($registro, 'cuenta'));
+        $usuario->setCorreo(Model::getDataString($registro, 'correo'));
+        $usuario->setEstatus(Model::getDataInteger($registro, 'estatus'));
+        return $usuario;
+    }
+
+    /**
+     * Recuperar el ID del usuario
+     * @return int
+     */
     public function getId() {
         return $this->id;
     }
-    
+
+    /**
+     * Asignar el ID del usuario
+     * @param int $id ID del usuario
+     */
     public function setId($id) {
         $this->id = $id;
     }
-    
+
+    /**
+     * Recuperar el tipo de usuario
+     * @return int
+     */
     public function getTipo() {
         return $this->tipo;
     }
-    
+
+    /**
+     * Asignar el tipo de usuario
+     * @param int $tipo tipo de usuario disponible en \UsuarioTipo
+     */
     public function setTipo($tipo) {
         $this->tipo = UsuarioTipo::SinAsignar;
-        if(UsuarioTipo::isValidValue($tipo)) {
+        if (UsuarioTipo::isValidValue($tipo)) {
             $this->tipo = $tipo;
         }
     }
-    
+
+    /**
+     * Recuperar la cuenta de usuario
+     * @return string
+     */
     public function getCuenta() {
         return $this->cuenta;
     }
-    
+
+    /**
+     * Asignar la cuenta de usuario
+     * @param string $cuenta cuenta de usuario
+     */
     public function setCuenta($cuenta) {
         $this->cuenta = UString::toEmpty($cuenta, 16);
     }
-    
-    public function getNombre() {
-        return $this->nombre;
-    }
-    
-    public function setNombre($nombre) {
-        $this->nombre = UString::toEmpty($nombre, 150);
-    }
-    
+
+    /**
+     * Recuperar el correo del usuario
+     * @return string
+     */
     public function getCorreo() {
         return $this->correo;
     }
-    
+
+    /**
+     * Asignar el correo del usuario
+     * @param string $correo correo del usuario
+     */
     public function setCorreo($correo) {
         $this->correo = UString::toEmpty($correo, 128);
     }
-    
+
+    /**
+     * Recuperar el estatus del usuario
+     * @return int
+     */
     public function getEstatus() {
         return $this->estatus;
     }
-    
+
+    /**
+     * Asignar el estatus del usuario
+     * @param int $estatus estatus de usuario disponible en \UsuarioEstatus
+     */
     public function setEstatus($estatus) {
         $this->estatus = UsuarioEstatus::SinAsignar;
-        if(UsuarioEstatus::isValidValue($estatus)) {
+        if (UsuarioEstatus::isValidValue($estatus)) {
             $this->estatus = $estatus;
         }
     }
+
+    /**
+     * Recuperar la fecha y hora de creación del registro
+     * @return DateTime
+     */
+    public function getCreado() {
+        return $this->creado;
+    }
+
+    /**
+     * Asignar la fecha y hora de creación del registro
+     * @param DateTime $creado fecha y hora de creación del registro
+     */
+    public function setCreado($creado) {
+        $this->creado = $creado;
+    }
+
 }

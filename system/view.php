@@ -1,63 +1,96 @@
 <?php
 
+// prevenir el acceso directo
+if (!defined('ROOT_DIR')) {
+    die('Usted no puede cargar esta pagina directamente.');
+}
+
+/**
+ * Componente MVC View para la presentación de datos
+ */
 class View {
-    
-    private $viewName;  // nombre de la vista a presentar
-    private $navbar;    // presentar la barra de navegación (si hay sesión y la página lo requiere)
-   
-    // elementos que serán integrados en la página de salida
-    private $vars     = array(); // variables de página
-    private $includes = array(); // lista de includes (código adicional)
-    private $styles   = array(); // lista de hojas de estilo
-    private $scripts  = array(); // lista de scripts (js/vbs)
-    
-    public function __construct($viewName, $navbar) {
-        $this->navbar = $navbar;
+
+    // variables de trabajo
+    private $viewName;
+    private $showNavbar;
+    private $vars = array();
+    private $styles = array();
+    private $scripts = array();
+    private $includes = array();
+
+    /**
+     * Crear una instancia del tipo View
+     * @param string $viewName nombre de la vista
+     * @param boolean $showNavbar mostrar la barra de navegación
+     */
+    public function __construct($viewName, $showNavbar) {
         $this->viewName = MVC_VIEWS . $viewName . '.php';
+        $this->showNavbar = $showNavbar;
     }
-    
-    public function addVar($var, $val) {
-        $this->vars[$var] = $val;
+
+    /**
+     * Agregar variables a la vista
+     * @param string $varName nombre de la variable
+     * @param mixed $varValue valor de la variable
+     */
+    public function addVar($varName, $varValue) {
+        $this->vars[$varName] = $varValue;
     }
-    
-    public function addStyle($style) {
-        $this->styles[] = $style;
+
+    /**
+     * Agregar una hoja de estilo a la vista (generalmente un archivo CSS)
+     * @param string $fileStyle nombre de archivo con extensión .css
+     */
+    public function addStyle($fileStyle) {
+        $this->styles[] = $fileStyle;
     }
-    
-    public function addScript($script) {
-        $this->scripts[] = $script;
+
+    /**
+     * Agregar un javascript a la vista (generalmente un archivo JS)
+     * @param string $fileScript nombre de archivo con extensión .js
+     */
+    public function addScript($fileScript) {
+        $this->scripts[] = $fileScript;
     }
-    
-    public function addInclude($file) {
-        $this->includes[] = UString::replacePipe($file);
+
+    /**
+     * Incluir el contenido de un archivo a la vista (generarlmente un PHP)
+     * @param string $fileName nombre de archivo con extensión .php
+     */
+    public function addInclude($fileName) {
+        $this->includes[] = UString::replacePipe($fileName);
     }
-    
+
+    /**
+     * Generar la vista de salida para presentar al usuario final
+     */
     public function render() {
         // agregar los styles, scripts e includes como variables
-        $this->vars['styles']   = $this->styles;
-        $this->vars['scripts']  = $this->scripts;
+        $this->vars['styles'] = $this->styles;
+        $this->vars['scripts'] = $this->scripts;
         $this->vars['includes'] = $this->includes;
-        
+
         // cargar las variables en la página de salida
         extract($this->vars);
-        
+
         // iniciar el buffer de salida y ejecutar la página
-        ob_start(); 
-        
+        ob_start();
+
         // LAYOUT - header (cabecera de página)
         include_once(MVC_VIEWS . 'layout' . DS . 'header.php');
-        if($this->navbar == true) {
+        if ($this->showNavbar == true) {
             // LAYOUT - navbar (barra de navegación)
             include_once(MVC_VIEWS . 'layout' . DS . 'navbar.php');
         }
-        
+
         // cargar la vista de la página
         require_once($this->viewName);
-        
+
         // LAYOUT - footer (pie de página)
         include_once(MVC_VIEWS . 'layout' . DS . 'footer.php');
-        
+
         // cerrar el buffer de salida y enviar la página al cliente
-        echo ob_get_clean(); 
+        echo ob_get_clean();
     }
+
 }

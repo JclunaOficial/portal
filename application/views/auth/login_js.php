@@ -1,8 +1,14 @@
+<?php
+// prevenir el acceso directo
+if (!defined('ROOT_DIR')) {
+    die('Usted no puede cargar esta pagina directamente.');
+}
+?>
 
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function () {
         // presentar imagen de fondo y mover cursor al campo de usuario
-        $.backstretch("<?=Request::resolveUrl('theme/img/login_bg.jpg');?>");
+        $.backstretch("<?= Request::resolveUrl('theme/img/login_bg.jpg'); ?>");
         $("#txt_usr").focus();
 
         // validar la cuenta de usuario y contraseña: son requeridos

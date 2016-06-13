@@ -1,52 +1,58 @@
 <?php
 
+// prevenir el acceso directo
+if (!defined('ROOT_DIR')) {
+    die('Usted no puede cargar esta pagina directamente.');
+}
+
 /**
-* Clase base para un controlador
-*/
+ * Clase base para un controlador
+ */
 class Controller {
-    
+
     private $require_login = true;
-    
+
     /**
-    * Determina si el controlador require sesión de usuario
-    */
-    public function getRequireLogin() {
+     * Determina si el controlador require sesión de usuario o no
+     * @return boolean verdadero si el login es requerido
+     */
+    public function getLoginRequired() {
         return $this->require_login;
     }
-    
+
     /**
-    * Especifica si el controlador require sesión de usuario
-    */
-    public function setRequireLogin($require) {
+     * Especifica si el controlador require sesión de usuario
+     * @param boolean $require valor para especificar si es requerido o no
+     */
+    public function setLoginRequired($require) {
         $this->require_login = $require;
     }
-    
+
     /**
-    * Carga un modelo localizado en la ruta ~/application/models/
-    */
-    public function loadModel($model) {
-        require_once(UString::replacePipe(MVC_MODELS . strtolower($model) . '.php'));
+     * Cargar un modelo MVC
+     * @param string $modelName nombre del modelo a cargar
+     */
+    public function loadModel($modelName) {
+        require_once(UString::replacePipe(MVC_MODELS . strtolower($modelName) . '.php'));
     }
-    
+
     /**
-    * Carga una vista localizada en la ruta ~/application/views/
-    */
-    public function loadView($view, $navbar = true) {
-        return new View(UString::replacePipe($view), $navbar);
+     * Cargar una vista MVC
+     * @param string $viewName nombre de la vista a cargar
+     * @param boolean $showNavbar verdadero para mostrar la barra de navegación
+     * @return \View una instancia que hereda la clase View (vista MVC)
+     */
+    public function loadView($viewName, $showNavbar = true) {
+        return new View(UString::replacePipe($viewName), $showNavbar);
     }
-    
+
     /**
-    * Carga una clase localizada en la ruta ~/application/classes/
-    */
-    public function loadClass($class) {
-        require_once(UString::replacePipe(APP_DIR . 'classes|' . strtolower($class) . '.php'));
-    }
-    
-    /**
-    * Navegar al controlador especificado
-    */
-    public static function navigate($location) {
-        $url = Request::resolveUrl($location);
+     * Navegar hacia un controlador en especifico
+     * @param string $controllerName
+     */
+    public static function navigate($controllerName) {
+        $url = Request::resolveUrl($controllerName);
         header('Location: ' . $url);
     }
+
 }

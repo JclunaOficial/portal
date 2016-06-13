@@ -6,13 +6,16 @@ img { max-width: 100%; }
 ::-moz-selection { background: #4aaf51; color: #fff; text-shadow: none; }
 ::selection { background: #4aaf51; color: #fff; text-shadow: none; }
 
+.top-content {
+    opacity: 0.85 !important;
+    filter: alpha(opacity=85) !important;
+}
+
 .top-content .text { color: #fff !important; }
 .top-content .text h1 { color: #fff !important; }
 
 .top-content .alert{
     text-align: left !important;
-    opacity: 0.6;
-    filter: alpha(opacity=60);  
 }
 
 .form-top {

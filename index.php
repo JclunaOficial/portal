@@ -3,19 +3,21 @@
 // antes de cualquier cosa se inicia la sesión
 session_start();
 
-// identificar y mantener la ruta raíz
-define('DS', DIRECTORY_SEPARATOR); // separador de directorio, segun el sistema operativo
-define('ROOT_DIR', realpath(dirname(__FILE__)) . DS); // ruta raíz para la aplicación
+// declaración corta para el separador de directorios
+define('DS', DIRECTORY_SEPARATOR);
+
+// declarar la ruta raíz para la aplicación
+define('ROOT_DIR', realpath(dirname(__FILE__)) . DS);
 
 // usando la ruta raíz se define el folder de sistema y de aplicación
-// por defecto son "system" y "application" respectivamente, pero si 
+// por defecto son "system" y "application" respectivamente, pero si
 // es necesario se puede cambiar el nombre y aquí se cambian los valores.
-define('SYS_DIR', ROOT_DIR . 'system' . DS);        // ruta de sistema
-define('APP_DIR', ROOT_DIR . 'application' . DS);   // ruta de aplicación
+define('SYS_DIR', ROOT_DIR . 'system' . DS);
+define('APP_DIR', ROOT_DIR . 'application' . DS);
 
-// cargar el módulo principal
+// cargar el módulo principal del framework
 require_once(SYS_DIR . 'portal.php');
-$portal = new Portal(); // crear objeto de trabajo
+$portal = new Portal();
 
-// iniciar la ejecución del sistema
+// ejecutar la aplicación
 $portal->run();

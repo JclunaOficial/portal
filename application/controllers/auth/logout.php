@@ -1,21 +1,31 @@
 <?php
 
+// prevenir el acceso directo
+if (!defined('ROOT_DIR')) {
+    die('Usted no puede cargar esta pagina directamente.');
+}
+
 /**
-* Controlador para termina la sesión de usuario
-*/
+ * Controlador para Logout
+ */
 final class LogoutController extends Controller {
-    
+
+    /**
+     * Crear una instancia del tipo LogoutController
+     */
     function __construct() {
-        // no require de login
-        $this->setRequireLogin(false);
+        // este controlador no requiere del login
+        $this->setLoginRequired(false);
     }
-    
-    function index() {
-        // destruir la sesión
+
+    /**
+     * Acción principal del controlador
+     * @return void
+     */
+    public function index() {
+        // destruir la sesión del usuario y regresar a la pagina principal
         Session::destroy();
-        
-        // navegar a la página predeterminada
         self::navigate(CONTROLLER_DEFAULT);
     }
-    
+
 }
