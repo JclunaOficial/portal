@@ -25,6 +25,10 @@ Si quieres contribuir a mejorar este proyecto o tienes dudas, por favor unete al
 
 ### Jornada
 
+* Versión 2016.06.15
+  * actualización de *Font Awesome* a la versión 4.3.6
+  * renombrado del folder *theme* a *web* por el tipo de contenido.
+
 * Versión 2016.06.13
   * Integración de interface de usuario (UI) con los frameworks
     * jQuery v1.12.3

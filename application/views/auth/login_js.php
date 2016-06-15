@@ -8,7 +8,7 @@ if (!defined('ROOT_DIR')) {
 <script type="text/javascript">
     $(document).ready(function () {
         // presentar imagen de fondo y mover cursor al campo de usuario
-        $.backstretch("<?= Request::resolveUrl('theme/img/login_bg.jpg'); ?>");
+        $.backstretch("<?= Request::resolveUrl('web/img/login_bg.jpg'); ?>");
         $("#txt_usr").focus();
 
         // validar la cuenta de usuario y contraseña: son requeridos

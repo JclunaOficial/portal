@@ -36,7 +36,7 @@ final class Portal {
 
     // información básico del framework; NO REMOVER!!! 
     const Product = 'Portal';
-    const Version = '2016.06.13.1203';
+    const Version = '2016.06.15.1411';
     const Author = 'Juan C. Luna H.';
 
     // declaracion de variables de trabajo

@@ -92,10 +92,10 @@ final class LoginController extends Controller {
 
     private function agregarComponentes($view) {
         // agregar las hojas de estilo para la vista
-        $view->addStyle(Request::resolveUrl('theme/css/login.css'));
+        $view->addStyle(Request::resolveUrl('web/css/login.css'));
 
         // agregar los scripts para la vista
-        $view->addScript(Request::resolveUrl('theme/js/jquery.backstretch.min.js'));
+        $view->addScript(Request::resolveUrl('web/js/jquery.backstretch.min.js'));
 
         // agregar los fragmentos de código a incluir
         $view->addInclude(MVC_VIEWS . 'auth|login_js.php');

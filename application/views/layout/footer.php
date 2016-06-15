@@ -17,10 +17,10 @@ if (!defined('ROOT_DIR')) {
     </div>
 </div>
 
-<script type="text/javascript" src="<?= Request::resolveUrl('theme/js/jquery.min.js'); ?>"></script>
-<script type="text/javascript" src="<?= Request::resolveUrl('theme/js/portal.js'); ?>"></script>
-<script type="text/javascript" src="<?= Request::resolveUrl('theme/bs/js/bootstrap.min.js'); ?>"></script>
-<script type="text/javascript" src="<?= Request::resolveUrl('theme/js/confirm-bootstrap.js'); ?>"></script>
+<script type="text/javascript" src="<?= Request::resolveUrl('web/js/jquery.min.js'); ?>"></script>
+<script type="text/javascript" src="<?= Request::resolveUrl('web/js/portal.js'); ?>"></script>
+<script type="text/javascript" src="<?= Request::resolveUrl('web/bs/js/bootstrap.min.js'); ?>"></script>
+<script type="text/javascript" src="<?= Request::resolveUrl('web/js/confirm-bootstrap.js'); ?>"></script>
 
 <?php
 if (isset($scripts) && count($scripts)) {
