@@ -6,11 +6,31 @@ if (!defined('ROOT_DIR')) {
 }
 
 /**
- * Clase de ayuda para la declaración y gestión de enumeraciones
+ * Declaración y gestión de enumeraciones
  */
 abstract class Enum {
 
     private static $cache = NULL;
+
+    /**
+     * Recuperar el nombre de un valor de la enumeración
+     * @param mixed $value valor a buscar
+     * @param boolean $split separar el nombre con espacios
+     * @return string
+     */
+    public static function getName($value, $split = false) {
+        $constants = self::getConstants();
+        if (!self::isValidValue($value)) {
+            return ''; // no existe
+        }
+
+        $name = array_keys($constants, $value)[0];
+        if ($split) {
+            return trim(preg_replace('/(?!^)[A-Z]{2,}(?=[A-Z][a-z])|[A-Z][a-z]/', ' $0', $name));
+        }
+
+        return $name;
+    }
 
     /**
      * Determina si el nombre existe y es valido dentro de la enumeración
@@ -20,6 +40,7 @@ abstract class Enum {
      */
     public static function isValidName($name, $strict = false) {
         $constants = self::getConstants();
+
         if ($strict) {
             // buscar el nombre exacto (case sensitive)
             return array_key_exists($name, $constants);
@@ -43,7 +64,6 @@ abstract class Enum {
 
     private static function getConstants() {
         if (self::$cache == NULL) {
-            // inicializar el cache
             self::$cache = Array();
         }
 
