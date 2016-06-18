@@ -11,9 +11,58 @@ if (!defined('ROOT_DIR')) {
 final class Bootstrap {
 
     /**
+     * Recuperar mensaje de alerta de bootstrap
+     * @param array $settings configuraciones para el mensaje de alerta
+     * @return string estructura HTML del tipo 'bootstrap alert'
+     */
+    public static function getAlert($settings) {
+        $type = 'info';
+        if (array_key_exists('type', $settings)) {
+            $type = $settings['type'];
+        }
+
+        $visible = '';
+        if (array_key_exists('visible', $settings) && $settings['visible'] == false) {
+            $visible = ' style="display:none;"';
+        }
+
+        $icon = '';
+        if (array_key_exists('icon', $settings)) {
+            $icon = "<i class='{$settings['icon']}'></i> ";
+        }
+
+        $title = '';
+        if (array_key_exists('title', $settings)) {
+            $title = ' ' . $settings['title'];
+        }
+
+        $showTime = '';
+        if (array_key_exists('showTime', $settings) && $settings['showTime'] == true) {
+            $showTime = '[ ' . UDate::formatTime() . ' ]';
+        }
+
+        $id = '';
+        if (array_key_exists('id', $settings)) {
+            $id = " id='{$settings['id']}'";
+        }
+
+        $message = '';
+        if (array_key_exists('message', $settings)) {
+            $message = " &mdash; <span{$id}>{$settings['message']}</span>";
+        }
+
+        $bs_tag = "<div class='alert alert-{$type}'{$visible}>";
+        $bs_tag .= "<strong>{$icon}{$title} </strong>{$showTime}{$message}";
+        $bs_tag .= "</div>";
+
+        // regresar el tag final
+        return $bs_tag;
+    }
+
+    /**
      * Recupera la barra de navegación de bootstrap
      * @param string $navbarXml archivo xml con la estructura de navegación
-     * @return string estructura HTML para la barra de navegación
+     * @return string estructura HTML del tipo 'bootstrap navbar'
      */
     public static function getNavbar($navbarXml) {
         $navbar = simplexml_load_file($navbarXml);
