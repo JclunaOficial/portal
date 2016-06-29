@@ -26,11 +26,5 @@ if (!defined('ROOT_DIR')) {
                 }
             });
         });
-
-        // presentar alerta si hay mensaje 
-        var msg = $("#alert-mensaje").text();
-        if (msg.length > 0) {
-            $("#alert-caja").toggle();
-        }
     });
 </script>

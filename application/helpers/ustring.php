@@ -108,89 +108,9 @@ final class UString {
     }
 
     /**
-     * Recuperar un string con la fecha especificada en formato aaaa-mm-dd 
-     * @param DateTime $date objeto DateTime con la fecha a formatear
-     * @return string
-     */
-    public static function formatDate($date = null) {
-        if ($date === null) {
-            return '';
-        }
-        return $date->format('Y-m-d');
-    }
-
-    /**
-     * Recuperar un string con la fecha y hora especificada en formato aaaa-mm-dd hh:mm<:ss>
-     * @param DateTime $date objeto DateTime con la fecha y hora a formatear
-     * @param boolean $seconds verdadero para incluir los segundos en el formato
-     * @return string
-     */
-    public static function formatDateTime($date = null, $seconds = false) {
-        if ($date === null) {
-            return '';
-        }
-        if ($seconds == true) {
-            return $date->format('Y-m-d H:i:s');
-        } else {
-            return $date->format('Y-m-d H:i');
-        }
-    }
-
-    /**
-     * Recuperar un string con la fecha y hora especificada en formato ISO aaaa-mm-ddThh:mm:ss
-     * @param DateTime $date objeto DateTime con la fecha y hora a formatear
-     * @return string
-     */
-    public static function formatDateISO($date = null) {
-        if ($date === null) {
-            return '';
-        }
-        return $date->format('Y-m-d\TH:i:s');
-    }
-
-    /**
-     * Recupera un string con la fecha y hora actual en formato ISO aaaa-mm-ddThh:mm:ss
-     * @return string
-     */
-    public static function formatNowISO() {
-        return self::formatDateISO(new DateTime());
-    }
-
-    /**
-     * Recupera un string con la fecha actual en formato aaaa-mm-dd
-     * @return string
-     */
-    public static function formatNow() {
-        return self::formatDate(new DateTime());
-    }
-
-    /**
-     * Recupera un string con la fecha y hora actual en formato aaaa-mm-dd hh:mm<:ss>
-     * @param boolean $seconds verdadero para incluir los segundos en el formato
-     * @return string
-     */
-    public static function formatNowDateTime($seconds = false) {
-        return self::formatDateTime(new DateTime(), $seconds);
-    }
-
-    /**
-     * Recupera un string con la hora actual en formato hh:mm<:ss>
-     * @param boolean $seconds verdadero para incluir los segundos en el formato
-     * @return string
-     */
-    public static function formatNowTime($seconds = false) {
-        $date = new DateTime();
-        if ($seconds == true) {
-            return $date->format('H:i:s');
-        } else {
-            return $date->format('H:i');
-        }
-    }
-
-    /**
      * Formatear un número con los separadores necesarios
      * @param int $value número a formatear
-     * @param boolean $cero verdadero para regresar un guión en lugar de cero
+     * @param boolean $cero falso para regresar un guión en lugar de cero
      * @return string número formateado
      */
     public static function formatNumber($value, $cero = true) {
@@ -198,6 +118,14 @@ final class UString {
             return '-';
         } else {
             return number_format($value);
+        }
+    }
+
+    public static function formatCurrency($value, $cero = true) {
+        if (!$cero && $value == 0) {
+            return '-';
+        } else {
+            return number_format($value, 2);
         }
     }
 

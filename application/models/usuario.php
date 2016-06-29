@@ -64,7 +64,7 @@ final class UsuarioModel extends Model {
             case 2:
                 $usuario->setId(2); // cuenta para administrador
                 $usuario->setTipo(UsuarioTipo::Administrador);
-                $usuario->setCuenta('Dummy, Administrador');
+                $usuario->setCuenta('Dummy, Admin');
                 $usuario->setCorreo('admin@portal.mx');
                 $usuario->setEstatus(UsuarioEstatus::Activo);
                 break;

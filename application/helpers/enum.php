@@ -62,7 +62,11 @@ abstract class Enum {
         return in_array($value, $values, $strict);
     }
 
-    private static function getConstants() {
+    /**
+     * Recuperar una lista del tipo key-value
+     * @return array
+     */
+    public static function getConstants() {
         if (self::$cache == NULL) {
             self::$cache = Array();
         }

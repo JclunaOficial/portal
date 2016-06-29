@@ -18,7 +18,6 @@ if (!defined('ROOT_DIR')) {
 </div>
 
 <script type="text/javascript" src="<?= Request::resolveUrl('web/js/jquery.min.js'); ?>"></script>
-<script type="text/javascript" src="<?= Request::resolveUrl('web/js/portal.js'); ?>"></script>
 <script type="text/javascript" src="<?= Request::resolveUrl('web/bs/js/bootstrap.min.js'); ?>"></script>
 <script type="text/javascript" src="<?= Request::resolveUrl('web/js/confirm-bootstrap.js'); ?>"></script>
 
@@ -31,6 +30,8 @@ if (isset($scripts) && count($scripts)) {
     }
 }
 ?>
+
+<script type="text/javascript" src="<?= Request::resolveUrl('web/js/portal.js'); ?>"></script>
 
 <?php
 if (isset($includes) && count($includes)) {

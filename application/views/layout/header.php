@@ -18,9 +18,8 @@ $themeNavbar = Session::getValue(THEME_NAVBAR, DEFAULT_THEME_NAVBAR);
 
         <title><?= PORTAL_TITLE; ?><?= (isset($pageTitle) ? ' &mdash; ' . $pageTitle : ''); ?></title>
 
-        <link type="text/css" rel="stylesheet" href="<?= Request::resolveUrl('web/bs/css/bootstrap-' . $themeName . '.min.css'); ?>"/>
         <link type="text/css" rel="stylesheet" href="<?= Request::resolveUrl('web/fa/css/font-awesome.min.css'); ?>"/>
-        <link type="text/css" rel="stylesheet" href="<?= Request::resolveUrl('web/css/portal.css'); ?>"/>
+        <link type="text/css" rel="stylesheet" href="<?= Request::resolveUrl('web/bs/css/bootstrap-' . $themeName . '.min.css'); ?>"/>
 
         <?php
         if (isset($styles) && count($styles)) {
@@ -31,6 +30,8 @@ $themeNavbar = Session::getValue(THEME_NAVBAR, DEFAULT_THEME_NAVBAR);
             }
         }
         ?>
+
+        <link type="text/css" rel="stylesheet" href="<?= Request::resolveUrl('web/css/portal.css'); ?>"/>
 
         <!--[if lt IE 9]>
         <script type="text/javascript" src="<?= Request::resolveUrl('web/js/html5shiv.min.js'); ?>"></script>

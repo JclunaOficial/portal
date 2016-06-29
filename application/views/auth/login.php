@@ -13,10 +13,17 @@ if (!defined('ROOT_DIR')) {
                     <h1><?= PORTAL_TITLE; ?></h1>
                 </div>
             </div>
-            <div id="alert-caja" class="alert alert-danger" style="display: none;">
-                <strong>ATENCIÓN [ <small><?= UString::formatNowTime(true); ?></small> ]</strong>:
-                <span id="alert-mensaje"><?= (isset($mensaje) ? $mensaje : ''); ?></span>
-            </div>
+
+            <?php
+            if(isset($mensaje) && $mensaje != '') {
+                echo Bootstrap::getAlert(array(
+                    'type' => 'danger', 'icon' => 'fa fa-bell-slash',
+                    'title' => 'Hay Problemas', 'showTime' => true,
+                    'message' => $mensaje, 'visible' => true
+                ));
+            }
+            ?>
+
             <div class="row">
                 <div class="col-md-6 col-md-offset-3 form-box">
                     <div class="form-top">
